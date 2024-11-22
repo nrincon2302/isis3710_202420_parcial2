@@ -36,18 +36,6 @@ export class PacienteService {
         return await this.pacienteRepository.save(paciente);
     }
 
-    async update(id:string, paciente: PacienteEntity): Promise<PacienteEntity> {
-        const persistedPaciente: PacienteEntity = await this.pacienteRepository.findOne(
-            {
-                where: { id }
-            }
-        );
-        if (!persistedPaciente) 
-            throw new BusinessLogicException("The patient with the given id was not found", BusinessError.NOT_FOUND);
-
-        return await this.pacienteRepository.save({ ...persistedPaciente, paciente });
-    }
-
     async delete(id: string): Promise<void> {
         const paciente: PacienteEntity = await this.pacienteRepository.findOne(
             {
@@ -60,7 +48,7 @@ export class PacienteService {
         // Validar que no se puede eliminar si tiene diagnosticos
         if (paciente.diagnosticos.length > 0)
             throw new BusinessLogicException("The patient cannot be deleted because it has diagnostics associated", BusinessError.PRECONDITION_FAILED);
-        
+
         await this.pacienteRepository.remove(paciente);
     }
 }

@@ -36,18 +36,6 @@ export class MedicoService {
         return await this.medicoRepository.save(medico);
     }
 
-    async update(id:string, medico: MedicoEntity): Promise<MedicoEntity> {
-        const persistedMedico: MedicoEntity = await this.medicoRepository.findOne(
-            {
-                where: { id }
-            }
-        );
-        if (!persistedMedico) 
-            throw new BusinessLogicException("The doctor with the given id was not found", BusinessError.NOT_FOUND);
-
-        return await this.medicoRepository.save({ ...persistedMedico, medico });
-    }
-
     async delete(id: string): Promise<void> {
         const medico: MedicoEntity = await this.medicoRepository.findOne(
             {

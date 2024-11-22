@@ -36,18 +36,6 @@ export class DiagnosticoService {
         return await this.diagnosticoRepository.save(diagnostico);
     }
 
-    async update(id:string, diagnostico: DiagnosticoEntity): Promise<DiagnosticoEntity> {
-        const persistedDiagnostico: DiagnosticoEntity = await this.diagnosticoRepository.findOne(
-            {
-                where: { id }
-            }
-        );
-        if (!persistedDiagnostico) 
-            throw new BusinessLogicException("The diagnostic with the given id was not found", BusinessError.NOT_FOUND);
-
-        return await this.diagnosticoRepository.save({ ...persistedDiagnostico, diagnostico });
-    }
-
     async delete(id: string): Promise<void> {
         const diagnostico: DiagnosticoEntity = await this.diagnosticoRepository.findOne(
             {
