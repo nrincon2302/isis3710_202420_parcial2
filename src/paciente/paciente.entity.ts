@@ -1,6 +1,6 @@
 import { Column, Entity, PrimaryGeneratedColumn, ManyToMany, JoinTable } from 'typeorm';
 import { MedicoEntity } from '../medico/medico.entity';
-import { DiagnosticoEntity } from 'src/diagnostico/diagnostico.entity';
+import { DiagnosticoEntity } from '../diagnostico/diagnostico.entity';
 
 @Entity()
 export class PacienteEntity {

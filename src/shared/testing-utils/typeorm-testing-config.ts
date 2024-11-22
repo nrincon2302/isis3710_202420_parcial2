@@ -1,7 +1,7 @@
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { MedicoEntity } from 'src/medico/medico.entity';
-import { PacienteEntity } from 'src/paciente/paciente.entity';
-import { DiagnosticoEntity } from 'src/diagnostico/diagnostico.entity';
+import { MedicoEntity } from '../../medico/medico.entity';
+import { PacienteEntity } from '../../paciente/paciente.entity';
+import { DiagnosticoEntity } from '../../diagnostico/diagnostico.entity';
 
 export const TypeOrmTestingConfig = () => [
  TypeOrmModule.forRoot({
