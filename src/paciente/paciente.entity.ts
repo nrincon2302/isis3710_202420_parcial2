@@ -14,6 +14,7 @@ export class PacienteEntity {
     genero: string;
 
     @ManyToMany(() => MedicoEntity, medico => medico.pacientes)
+    @JoinTable()
     medicos: MedicoEntity[];
 
     @ManyToMany(() => DiagnosticoEntity, diagnostico => diagnostico.pacientes)
