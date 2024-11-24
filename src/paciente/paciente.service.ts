@@ -39,7 +39,8 @@ export class PacienteService {
     async delete(id: string): Promise<void> {
         const paciente: PacienteEntity = await this.pacienteRepository.findOne(
             {
-                where: { id }
+                where: { id },
+                relations: ['medicos', 'diagnosticos']
             }
         );
         if (!paciente) 

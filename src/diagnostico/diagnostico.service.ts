@@ -12,14 +12,14 @@ export class DiagnosticoService {
     ) {}
 
     async findAll(): Promise<DiagnosticoEntity[]> {
-        return await this.diagnosticoRepository.find({ relations: ['paciente'] });
+        return await this.diagnosticoRepository.find({ relations: ['pacientes'] });
     }
 
     async findOne(id: string): Promise<DiagnosticoEntity> {
         const diagnostico: DiagnosticoEntity = await this.diagnosticoRepository.findOne(
             {
                 where: { id },
-                relations: ['paciente'],
+                relations: ['pacientes'],
             }
         );
         if (!diagnostico) 
