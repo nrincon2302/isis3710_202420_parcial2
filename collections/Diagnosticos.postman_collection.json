@@ -1,0 +1,504 @@
+{
+	"info": {
+		"_postman_id": "0ba76054-c76c-42b7-835e-b7a3689d3e43",
+		"name": "Diagnosticos",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25519060",
+		"_collection_link": "https://warped-moon-645477.postman.co/workspace/Web-Individual-Workspace~8a499d26-c919-4be2-a3bd-348006f0c5ec/collection/25519060-0ba76054-c76c-42b7-835e-b7a3689d3e43?action=share&source=collection_link&creator=25519060"
+	},
+	"item": [
+		{
+			"name": "Crear un nuevo diagnóstico",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json()\r",
+							"pm.globals.set(\"id_diagnostico_1\", data.id);\r",
+							"\r",
+							"pm.test(\"Status code is 201\", function () {\r",
+							"   pm.response.to.have.status(201);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"nombre\": \"Hipertensión arterial\",\r\n  \"descripcion\": \"Presión arterial alta detectada en consulta médica\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/diagnosticos",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"diagnosticos"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Crear un nuevo diagnóstico",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"nombre\": \"Hipertensión arterial\",\r\n  \"descripcion\": \"Presión arterial alta detectada en consulta médica\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/diagnosticos",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"diagnosticos"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": \"7d3fefc1-3c9b-40a4-b2b6-59bcaad34a22\",\n    \"nombre\": \"Hipertensión arterial\",\n    \"descripcion\": \"Presión arterial alta detectada en consulta médica\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Crear un diagnóstico con descripción de más de 200 caracteres",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 412\", function () {\r",
+							"   pm.response.to.have.status(412);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get expected error message\", function () {\r",
+							"   var data = pm.response.json();\r",
+							"   pm.expect(data.message).to.eql(\"The diagnostic description must be less than 200 characters\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"nombre\": \"Hipertensión arterial\",\r\n  \"descripcion\": \"Presión arterial alta detectada en consulta médica, Presión arterial alta detectada en consulta médica, Presión arterial alta detectada en consulta médica, Presión arterial alta detectada en consulta médica, Presión arterial alta detectada en consulta médica, Presión arterial alta detectada en consulta médica, Presión arterial alta detectada en consulta médica, Presión arterial alta detectada en consulta médica, Presión arterial alta detectada en consulta médica, Presión arterial alta detectada en consulta médica, Presión arterial alta detectada en consulta médica, Presión arterial alta detectada en consulta médica, Presión arterial alta detectada en consulta médica, Presión arterial alta detectada en consulta médica, Presión arterial alta detectada en consulta médica,Presión arterial alta detectada en consulta médica, Presión arterial alta detectada en consulta médica, Presión arterial alta detectada en consulta médica\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/diagnosticos",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"diagnosticos"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Crear un diagnóstico con descripción de más de 200 caracteres",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"nombre\": \"Hipertensión arterial\",\r\n  \"descripcion\": \"Presión arterial alta detectada en consulta médica, Presión arterial alta detectada en consulta médica, Presión arterial alta detectada en consulta médica, Presión arterial alta detectada en consulta médica, Presión arterial alta detectada en consulta médica, Presión arterial alta detectada en consulta médica, Presión arterial alta detectada en consulta médica, Presión arterial alta detectada en consulta médica, Presión arterial alta detectada en consulta médica, Presión arterial alta detectada en consulta médica, Presión arterial alta detectada en consulta médica, Presión arterial alta detectada en consulta médica, Presión arterial alta detectada en consulta médica, Presión arterial alta detectada en consulta médica, Presión arterial alta detectada en consulta médica,Presión arterial alta detectada en consulta médica, Presión arterial alta detectada en consulta médica, Presión arterial alta detectada en consulta médica\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/diagnosticos",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"diagnosticos"
+							]
+						}
+					},
+					"status": "Precondition Failed",
+					"code": 412,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 412,\n    \"message\": \"The diagnostic description must be less than 200 characters\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Obtener todos los diagnósticos",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test('Number of diagnostics > ' + 0, function () {\r",
+							"   var data = pm.response.json()\r",
+							"   pm.expect(data.length).to.greaterThan(0)\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"   pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/diagnosticos",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"diagnosticos"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Obtener todos los diagnósticos",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/diagnosticos",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"diagnosticos"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "[\r\n  {\r\n    \"id\": \"7d3fefc1-3c9b-40a4-b2b6-59bcaad34a22\",\r\n    \"nombre\": \"Hipertensión arterial\",\r\n    \"descripcion\": \"Presión arterial alta detectada en consulta médica\",\r\n    \"pacientes\": [\r\n        \"id\": {{id_paciente_2}}\r\n    ]\r\n  },\r\n  {\r\n    \"id\": \"5b8bce0e-812d-4ad2-bf44-65d3c48f930b\",\r\n    \"nombre\": \"Migraña crónica\",\r\n    \"descripcion\": \"Dolor de cabeza recurrente diagnosticado en consulta\",\r\n    \"pacientes\": []\r\n  }\r\n]"
+				}
+			]
+		},
+		{
+			"name": "Obtener un diagnóstico",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"   pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/diagnosticos/{{id_diagnostico_1}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"diagnosticos",
+						"{{id_diagnostico_1}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Obtener un diagnóstico",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/diagnosticos/{{id_diagnostico_1}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"diagnosticos",
+								"{{id_diagnostico_1}}"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\r\n    \"id\": \"7d3fefc1-3c9b-40a4-b2b6-59bcaad34a22\",\r\n    \"nombre\": \"Hipertensión arterial\",\r\n    \"descripcion\": \"Presión arterial alta detectada en consulta médica\",\r\n    \"pacientes\": [\r\n        {\r\n            \"id\": {{id_paciente_2}}\r\n        }\r\n    ]\r\n}"
+				}
+			]
+		},
+		{
+			"name": "Obtener un diagnóstico que no existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"   pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get expected error message\", function () {\r",
+							"   var data = pm.response.json();\r",
+							"   pm.expect(data.message).to.eql(\"The diagnostic with the given id was not found\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/diagnosticos/00000000-0000-0000-0000-000000000000",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"diagnosticos",
+						"00000000-0000-0000-0000-000000000000"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Obtener un diagnóstico que no existe",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/diagnosticos/00000000-0000-0000-0000-000000000000",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"diagnosticos",
+								"00000000-0000-0000-0000-000000000000"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\r\n   \"statusCode\": 404,\r\n   \"message\": \"The diagnostic with the given id was not found\"\r\n}"
+				}
+			]
+		},
+		{
+			"name": "Borrar un diagnóstico",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {\r",
+							"   pm.response.to.have.status(204);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/diagnosticos/{{id_diagnostico_1}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"diagnosticos",
+						"{{id_diagnostico_1}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Borrar un diagnóstico",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/diagnosticos/{{id_diagnostico_1}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"diagnosticos",
+								"{{id_diagnostico_1}}"
+							]
+						}
+					},
+					"status": "No Content",
+					"code": 204,
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				}
+			]
+		},
+		{
+			"name": "Borrar un diagnóstico que no existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"   pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get expected error message\", function () {\r",
+							"   var data = pm.response.json();\r",
+							"   pm.expect(data.message).to.eql(\"The diagnostic with the given id was not found\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/diagnosticos/00000000-0000-0000-0000-000000000000",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"diagnosticos",
+						"00000000-0000-0000-0000-000000000000"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Borrar un diagnóstico que no existe",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/diagnosticos/00000000-0000-0000-0000-000000000000",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"diagnosticos",
+								"00000000-0000-0000-0000-000000000000"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\r\n   \"statusCode\": 404,\r\n   \"message\": \"The diagnostic with the given id was not found\"\r\n}"
+				}
+			]
+		}
+	]
+}

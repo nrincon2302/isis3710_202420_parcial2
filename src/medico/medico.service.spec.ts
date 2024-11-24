@@ -97,6 +97,16 @@ describe('MedicoService', () => {
     expect(medicoCreated.telefono).toEqual(medico.telefono);
   });
 
+  it('create should throw an error when the doctor name is empty', async () => {
+    await expect(service.create({
+      id: "",
+      nombre: "",
+      especialidad: faker.lorem.word(),
+      telefono: faker.phone.number(),
+      pacientes: []
+    })).rejects.toHaveProperty("message", "The doctor must have a name and a specialty");
+  });
+
   it('create should throw an error when the doctor specialty is empty', async () => {
     await expect(service.create({
       id: "",
